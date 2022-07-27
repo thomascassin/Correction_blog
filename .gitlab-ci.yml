@@ -9,6 +9,7 @@ cache:
   paths:
     - .m2/repository
   key: "$CI_JOB_NAME"
+
 compile_job:
   stage: build
   script:
@@ -20,7 +21,7 @@ compile_job:
       -Djava.awt.headless=true
       --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
- build_job:
+build_job:
   stage: build
   script:
     - mvn build
