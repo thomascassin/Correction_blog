@@ -44,7 +44,7 @@ test_job:
       --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
 code_quality_job:
-  stage: qualœity
+  stage: quality
   image: docker:stable
   allow_failure: true
   services:
