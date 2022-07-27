@@ -45,7 +45,6 @@ test_job:
 
 code_quality_job:
   stage: quality
-  image: docker:stable
   allow_failure: true
   services:
     - docker:stable-dind
