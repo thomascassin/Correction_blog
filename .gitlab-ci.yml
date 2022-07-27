@@ -21,7 +21,7 @@ compile_job:
       -Djava.awt.headless=true
       --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
-build_job:
+install_job:
   stage: build
   allow_failure: false
   script:
@@ -48,7 +48,7 @@ test_coverage:
   stage: test
   allow_failure: true
   script:
-    - mvn $MAVEN_CLI_OPTS clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report
+    - mvn clean test
   artifacts:
     paths:
       - target/site/jacoco/jacoco.xml
