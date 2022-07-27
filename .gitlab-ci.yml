@@ -24,7 +24,7 @@ compile_job:
 build_job:
   stage: build
   script:
-    - mvn build
+    - mvn clean install
       -Dhttps.protocols=TLSv1.2
       -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
       -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN
@@ -44,7 +44,7 @@ test_job:
       --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true
 
 code_quality_job:
-  stage: quality
+  stage: qualœity
   image: docker:stable
   allow_failure: true
   services:
