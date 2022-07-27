@@ -23,7 +23,7 @@ compile_job:
 
 build_job:
   stage: build
-  allow_failure: true
+  allow_failure: false
   script:
     - mvn clean install
       -Dhttps.protocols=TLSv1.2
