@@ -1,7 +1,7 @@
 /**
  * 
  */
-package blog.aston.test;
+package blog.sildy.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +16,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import blog.sildy.test.User;
+
 
 /**
  * @author manager
@@ -32,7 +37,7 @@ class UserTest {
 
 	
 	@Nested
-	@Tag("testAuuthentification")
+	@Tag("testAuthentification")
 	@DisplayName("Réussir à créer un compte et à se connecter")
 	class Authentification {
 		
@@ -59,13 +64,33 @@ class UserTest {
 		
 	}
 	
+	@Test
+	@DisplayName("Test sur les noms complets")
+	public void validerLeNomComplet() {
+		
+		assertEquals(listUsers.get(0).getNomComplet(), "TAHOBEU Didier1" );
+	}
+	
+	
+	@ParameterizedTest(name = "Prenom: {0}, Nom: {1}, Nom Complet: {2} ")
+	@CsvSource({"Didier, TAHOBEU, Didier TAHOBEU", "John, Doe, John Doe", "Jane, Doe, Jane Doe", "Pierre, Dupont, Pierre Dupont"})
+	@DisplayName("Test sur les noms complets paramétrés")
+	public void testNomCompletAvecParametres(String prenom, String nom, String nomCompletAttendu) {
+		User personne = new User();
+		personne.setNom(nom);
+		personne.setPrenom(prenom);
+		
+		assertEquals(nomCompletAttendu, personne.getNomComplet());
+		
+	}
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	void avatChaqueTest() throws Exception {
 		listUsers = new ArrayList<User>();
-		User user1 = new User( 1, "didiertahobeu@gmail.com", "relax@10", "Didier1", "TAHOBE");
+		User user1 = new User( 1, "didiertahobeu@gmail.com", "relax@10", "Didier1", "TAHOBEU");
 		User user2 = new User(2, "ok@gmail.com", "relax@11", "O", "K");
 		User user3 = new User(3, "johndoe@gmail.com", "relax@12", "John", "Doe");
 		User user4 = new User(4, "janedoe@gmail.com", "relax@13", "Jane", "Doe");
@@ -74,6 +99,8 @@ class UserTest {
 		listUsers.add(user3);
 		listUsers.add(user4);
 	}
+	
+	
 
 	
 

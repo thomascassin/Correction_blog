@@ -1,4 +1,4 @@
-package blog.aston.test;
+package blog.sildy.test;
 
 import java.util.List;
 
@@ -104,6 +104,11 @@ public class User {
 		newUser.setId(id);
 		users.add(newUser);
 		return newUser;
+	}
+	
+	public String getNomComplet() {
+		
+		return this.prenom + ' '+this.nom;
 	}
 
 }
