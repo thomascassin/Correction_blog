@@ -1,10 +1,5 @@
 pipeline {
    
-   environment {
-       PROJET_URL           = 'https://github.com/SylvaineDidier/jenkins_java_maven_test.git'
-       GITHUB_ID            = credentials('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')
-   }
-
    agent any
 
    stages {
@@ -15,7 +10,7 @@ pipeline {
                 extensions: scm.extensions,
                 userRemoteConfigs: [[
                     url: 'https://github.com/SylvaineDidier/jenkins_java_maven_test.git',
-                    credentialsId: '34743330-2f85-4c07-bcac-58fa0bb18701'
+                    credentialsId: '86ebefd1-279b-46f1-be3a-ca3094b4750d'
                 ]]
             ])
             
