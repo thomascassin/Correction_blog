@@ -22,7 +22,14 @@ pipeline {
             sh "ls -lart ./*"
          }
       }
-
+	  stage('Compile'){
+         steps{
+            withMaven(maven:'mon_maven_auto')
+            {
+              sh "mvn compile"
+            }
+         }
+      }
       stage('Test'){
          steps{
             withMaven(maven:'mon_maven_auto')
