@@ -46,7 +46,7 @@ pipeline {
 
       stage ('Scan and Build Jar File') {
          steps {
-            withSonarQubeEnv(installationName: 'Local SonarQube', credentialsId: 'sonarqube-token-for-jenkins') {
+            withSonarQubeEnv(installationName: 'My local Sonar', credentialsId: 'sonarqube-token-for-jenkins') {
                sh 'mvn -B -DskipTests clean package sonar:sonar -Dsonar.login=$Login -Dsonar.password=$Password'
             }
          }
