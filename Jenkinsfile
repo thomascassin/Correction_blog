@@ -37,11 +37,7 @@ pipeline {
               sh "mvn test"
             }
          }
-         post {
-	        always {
-	            junit '**/build/test-reports/*.xml'
-	        }
-	    }
+         
       }
       
       stage('Build'){
@@ -57,8 +53,8 @@ pipeline {
         
         post {
 	        always {
-	        	archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-	            junit 'build/reports/**/*.xml'
+	        	archiveArtifacts artifacts: '**build/libs/**/*.jar', fingerprint: true
+	            junit '**build/reports/**/*.xml'
 	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/target/site/cobertura/*.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: true])
 	        }
 	    }
