@@ -2,6 +2,10 @@ pipeline {
 
    agent any
 
+   tools{
+      maven 'mon_maven_auto'
+   }
+
    stages {
       stage('Clone') {
          steps {
@@ -22,9 +26,7 @@ pipeline {
 
       stage('Build'){
          steps{
-            withMaven(maven: 'mon_maven_auto') {
-               sh "mvn -B -DskipTests clean package"
-            }
+            sh "mvn -B -DskipTests clean package"
          }
       }
 
