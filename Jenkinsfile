@@ -23,11 +23,11 @@ pipeline {
          }
       }
 
-      stage('Compile'){
+      stage('Test'){
          steps{
             withMaven(maven:'mon_maven_auto')
             {
-              sh "mvn -T"
+              sh "mvn test"
             }
          }
       }
