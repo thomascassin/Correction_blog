@@ -46,9 +46,8 @@
                     </formats>
                     <instrumentation>
 	                    <includes>
-	                        <include>**/*User*.class</include>
+	                        <include>**/*UserTest.class</include>
 	                        <include>**/*.class</include>
-	                        **/*.class
 	                    </includes>
 	                </instrumentation>
                 </configuration>

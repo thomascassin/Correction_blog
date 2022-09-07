@@ -43,6 +43,7 @@ pipeline {
             sh "mvn -B -DskipTests clean package"
          }
       }
+      junit 'more-test-results.xml'
 	stage('Code Coverage') {
         steps {
             sh 'mvn clean cobertura:cobertura install test  -Dcobertura.report.format=xml'
@@ -51,6 +52,7 @@ pipeline {
         post {
 	        always {
 	            junit '**/nosetests.xml'
+	            step([$class: 'JUnitResultArchiver'])
 	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/target/site/cobertura/*.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: true])
 	        }
 	    }
