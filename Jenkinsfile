@@ -46,23 +46,12 @@ pipeline {
 	stage('Code Coverage') {
         steps {
             sh 'mvn clean cobertura:cobertura'
-            publishers {
-	        cobertura('**/target/site/cobertura/coverage.xml') {
-	            failNoReports(true)
-	            sourceEncoding('ASCII')
-	
-	            // the following targets are added by default to check the method, line and conditional level coverage
-	            methodTarget(80, 0, 0)
-	            lineTarget(80, 0, 0)
-	            conditionalTarget(70, 0, 0)
-	        }
-	    }
         }
         
         post {
 	        always {
 	            junit '**/nosetests.xml'
-	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/target/site/cobertura/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
 	        }
 	    }
     }
