@@ -10,9 +10,6 @@ pipeline {
    stages {
       stage('Clone') {
          steps {
-            //Clone the repository
-            //git credentialsId: '${GITHUB_ID}', url: '${PROJET_URL}'
-            //git credentialsId: '$GITHUB_ID', url: '$PROJET_URL'
             checkout([$class: 'GitSCM',
                 branches: [[name: '*/master' ]],
                 extensions: scm.extensions,
