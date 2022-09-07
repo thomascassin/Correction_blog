@@ -23,7 +23,14 @@ pipeline {
          }
       }
 
-
+      stage('Compile'){
+         steps{
+            withMaven(maven:'mon_maven_auto')
+            {
+              sh "mvn -T"
+            }
+         }
+      }
       stage('Build'){
          steps{
             sh "mvn -B -DskipTests clean package"
