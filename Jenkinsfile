@@ -37,13 +37,19 @@ pipeline {
               sh "mvn test"
             }
          }
+         post {
+	        always {
+	            junit '**/nosetests.xml'
+	            step([$class: 'JUnitResultArchiver'])
+	        }
+	    }
       }
       stage('Build'){
          steps{
             sh "mvn -B -DskipTests clean package"
          }
       }
-      junit 'more-test-results.xml'
+      
 	stage('Code Coverage') {
         steps {
             sh 'mvn clean cobertura:cobertura install test  -Dcobertura.report.format=xml'
