@@ -43,7 +43,11 @@ pipeline {
             sh "mvn -B -DskipTests clean package"
          }
       }
-
+		stage('Code Coverage') {
+	        steps {
+	            sh 'mvn clean cobertura:cobertura'
+	        }
+	    }
       stage ('Scan and Build Jar File') {
          steps {
             withSonarQubeEnv(installationName: 'My local Sonar', credentialsId: '1150527b-92b9-4ebe-a1e0-6f7adef21174') {
