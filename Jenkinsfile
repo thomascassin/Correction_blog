@@ -1,5 +1,5 @@
 pipeline {
-   
+
    agent any
 
    stages {
@@ -13,23 +13,23 @@ pipeline {
                     credentialsId: '86ebefd1-279b-46f1-be3a-ca3094b4750d'
                 ]]
             ])
-            
+
             //List all directories
-            sh "ls -lart ./*" 
+            sh "ls -lart ./*"
          }
       }
-      
+
 
       stage('Build'){
          steps{
-            withMaven(maven: 'apache-maven-3.8.6') {
+            withMaven(maven: 'mon_maven_auto') {
                sh "mvn -B -DskipTests clean package"
             }
          }
       }
 
-     
 
-     
+
+
    }
 }
