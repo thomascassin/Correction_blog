@@ -7,24 +7,7 @@ pipeline {
    agent any
 
    stages {
-      stage('Clone') {
-         steps {
-            //Clone the repository
-            //git credentialsId: '${GITHUB_ID}', url: '${PROJET_URL}'
-            //git credentialsId: '$GITHUB_ID', url: '$PROJET_URL'
-            checkout([$class: 'GitSCM',
-                branches: [[name: '*/master' ]],
-                extensions: scm.extensions,
-                userRemoteConfigs: [[
-                    url: 'https://github.com/SylvaineDidier/jenkins_java_maven_test.git',
-                    credentialsId: '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'
-                ]]
-            ])
-            
-            //List all directories
-            sh "ls -lart ./*" 
-         }
-      }
+      
 
       stage('Build'){
          steps{
