@@ -49,10 +49,8 @@
 	                        <include>**/*UserTest.class</include>
 	                        <include>**/*.class</include>
 	                    </includes>
-	                    <excludes>
-	                        <exclude>**/User.class</exclude>
-	                    </excludes>
 	                    
+	             
 	                </instrumentation>
                 </configuration>
                 <executions>
