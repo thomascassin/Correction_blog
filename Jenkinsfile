@@ -43,11 +43,17 @@ pipeline {
             sh "mvn -B -DskipTests clean package"
          }
       }
-		stage('Code Coverage') {
-	        steps {
-	            sh 'mvn clean cobertura:cobertura'
+	stage('Code Coverage') {
+        steps {
+            sh 'mvn clean cobertura:cobertura test -Pcoverage'
+        }
+        post {
+	        always {
+	            junit '**/nosetests.xml'
+	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
 	        }
 	    }
+    }
       stage ('Scan and Build Jar File') {
          steps {
             withSonarQubeEnv(installationName: 'My local Sonar', credentialsId: '1150527b-92b9-4ebe-a1e0-6f7adef21174') {
@@ -55,6 +61,7 @@ pipeline {
             }
          }
       }
+      
 
 
 
