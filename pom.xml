@@ -50,7 +50,7 @@
 	                        <include>**/*.class</include>
 	                    </includes>
 	                    <excludes>
-	                        <exclude>**/**/User.class</exclude>
+	                        <exclude>**/User.class</exclude>
 	                    </excludes>
 	                    
 	                </instrumentation>
