@@ -45,13 +45,13 @@ pipeline {
       }
 	stage('Code Coverage') {
         steps {
-            sh 'mvn clean cobertura:cobertura'
+            sh 'mvn clean cobertura:cobertura install test  -Dcobertura.report.format=xml'
         }
         
         post {
 	        always {
 	            junit '**/nosetests.xml'
-	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/target/site/cobertura/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+	            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/target/site/cobertura/*.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: true])
 	        }
 	    }
     }

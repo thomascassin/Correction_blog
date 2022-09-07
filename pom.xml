@@ -38,11 +38,19 @@
 			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>2.7</version>
                 <configuration>
                     <formats>
                         <format>xml</format>
+                        <format>html</format>
                     </formats>
+                    <instrumentation>
+	                    <includes>
+	                        <include>**/*User*.class</include>
+	                        <include>**/*.class</include>
+	                        **/*.class
+	                    </includes>
+	                </instrumentation>
                 </configuration>
                 <executions>
                     <execution>
