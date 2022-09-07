@@ -45,9 +45,8 @@ pipeline {
       }
 	stage('Code Coverage') {
         steps {
-            sh 'mvn clean cobertura:cobertura test -Pcoverage'
-        }
-        publishers {
+            sh 'mvn clean cobertura:cobertura'
+            publishers {
 	        cobertura('**/target/site/cobertura/coverage.xml') {
 	            failNoReports(true)
 	            sourceEncoding('ASCII')
@@ -58,6 +57,8 @@ pipeline {
 	            conditionalTarget(70, 0, 0)
 	        }
 	    }
+        }
+        
         post {
 	        always {
 	            junit '**/nosetests.xml'
