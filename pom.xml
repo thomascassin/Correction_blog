@@ -48,9 +48,8 @@
 	                    <includes>
 	                        <include>**/*UserTest.class</include>
 	                        <include>**/*.class</include>
+	                        <include>**/User.class</include>
 	                    </includes>
-	                    
-	             
 	                </instrumentation>
                 </configuration>
                 <executions>
